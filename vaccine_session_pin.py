@@ -12,7 +12,10 @@ date_str = [i.strftime("%d-%m-%Y") for i in date_list]
 
 for inp_date in date_str:
     url = f"https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode={pincode}&date={inp_date}"
-    response = requests.get(url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
+    }
+    response = requests.get(url, headers=headers)
     if response.ok:
         resp_json = response.json()
         if resp_json["sessions"]:

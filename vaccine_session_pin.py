@@ -6,16 +6,18 @@ pincode = "452001"
 age = 23
 no_of_days = 3
 
-present = datetime.datetime.today()
-date_list = [present + datetime.timedelta(days= i) for i in range(no_of_days)]
+
+d, m, y =[int(x) for x in input("Enter a date: ").split("-")]
+date = datetime.date(y, m, d)
+date_list = [date + datetime.timedelta(days= i) for i in range(no_of_days)]
 date_str = [i.strftime("%d-%m-%Y") for i in date_list]
 
 for inp_date in date_str:
     url = f"https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode={pincode}&date={inp_date}"
-    headers = {
+    browser_headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
     }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers= browser_headers)
     if response.ok:
         resp_json = response.json()
         if resp_json["sessions"]:

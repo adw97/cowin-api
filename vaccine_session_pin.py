@@ -7,7 +7,7 @@ age = 23
 no_of_days = 3
 
 
-d, m, y =[int(x) for x in input("Enter a date: ").split("-")]
+d, m, y = [int(x) for x in input("Enter a date: ").split("-")]
 date = datetime.date(y, m, d)
 date_list = [date + datetime.timedelta(days= i) for i in range(no_of_days)]
 date_str = [i.strftime("%d-%m-%Y") for i in date_list]
